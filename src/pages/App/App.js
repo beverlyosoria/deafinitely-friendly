@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
+import NavBar from  "../../components/NavBar/NavBar";
 
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
@@ -29,12 +30,10 @@ class App extends Component {
       <div>
         <Router>
           <h1>App</h1>
-
-          <br />
-          <Link to="/signup">Signup</Link>
-          <br />
-          <Link to="/login">Login</Link>
-
+          <NavBar 
+          user={this.state.user}
+          handleLogout={this.handleLogout}
+          />
           <Route
             exact
             path="/signup"
