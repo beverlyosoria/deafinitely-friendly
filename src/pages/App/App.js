@@ -9,7 +9,7 @@ import LoginPage from "../LoginPage/LoginPage";
 import userService from "../../utils/userService";
 import HomePage from "../HomePage/HomePage";
 import NewPost from "../../components/NewPost/NewPost";
-import { async } from "q";
+
 
 class App extends Component {
   constructor(props) {
@@ -27,8 +27,15 @@ class App extends Component {
     this.setState({ user: userService.getUser() });
   };
 
-  handleAddPost = async () => {
-
+  handleAddPost = async ({ title }) => {
+    const options = {
+      method: 'POST',
+      headers: {
+        "content-type" : "application/json"
+      },
+      body: JSON.stringify({title})
+    }
+    await createPost(options) 
   }
 
   render() {

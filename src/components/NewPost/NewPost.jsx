@@ -2,12 +2,10 @@ import React, {Component} from 'react';
 import './NewPost.css';
 
 class NewPost extends Component {
-constructor(props) {
-super(props);
-this.state = {
+    state = {
     title: ''
-    };
-}
+    }
+
 handleOnChange = event => {
     this.setState({
         [event.target.name]: event.target.value
@@ -16,7 +14,7 @@ handleOnChange = event => {
 
 handleSubmit = event => {
     event.preventDefault()
-    
+    this.props.handleAddPost({...this.state})
 }
 
 render() {
