@@ -8,6 +8,8 @@ import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import userService from "../../utils/userService";
 import HomePage from "../HomePage/HomePage";
+import NewPost from "../../components/NewPost/NewPost";
+import { async } from "q";
 
 class App extends Component {
   constructor(props) {
@@ -16,7 +18,6 @@ class App extends Component {
       user: userService.getUser()
     };
   }
-
   handleLogout = () => {
     userService.logout();
     this.setState({ user: null });
@@ -25,6 +26,10 @@ class App extends Component {
   handleSignupOrLogin = () => {
     this.setState({ user: userService.getUser() });
   };
+
+  handleAddPost = async () => {
+
+  }
 
   render() {
     return (
@@ -62,6 +67,16 @@ class App extends Component {
               <LoginPage
                 history={history}
                 handleSignupOrLogin={this.handleSignupOrLogin}
+              />
+            )}
+          />
+            <Route
+            exact
+            path="/newPost"
+            render={({ history }) => (
+              <NewPost
+                history={history}
+                handleAddPost={this.handleAddPost}
               />
             )}
           />
