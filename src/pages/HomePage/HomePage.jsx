@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './HomePage.css';
 import { Link } from 'react-router-dom';
 
-const HomePage = () => {
+class HomePage extends Component {
+    render () {
     return (
         <div>
         <br />
@@ -11,7 +12,8 @@ const HomePage = () => {
         <button className='new-post'>New Post</button>
 		</Link> 
         </div>
-    );
-};
+     );
+    }
+}
 
 export default HomePage;

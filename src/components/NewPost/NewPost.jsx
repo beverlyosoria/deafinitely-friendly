@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './NewPost.css';
+import Map from './../../components/Map/Map';
 
 class NewPost extends Component {
     state = {
@@ -24,6 +25,15 @@ render() {
     <form className="post" onSubmit={this.handleSubmit}>
             {' '}
             <label>Title</label>
+            <Map
+     google={this.props.google}
+     center={{lat: 18.5204, lng: 73.8567}}
+     height='300px'
+     zoom={15}
+    />
+    <br />
+    <br />
+    <br />
             <input
                 type="text"
                 name="title"
