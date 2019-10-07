@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import NavBar from  "../../components/NavBar/NavBar";
 
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import userService from "../../utils/userService";
+import HomePage from "../HomePage/HomePage";
 
 class App extends Component {
   constructor(props) {
@@ -28,11 +29,21 @@ class App extends Component {
   render() {
     return (
       <div>
+        
         <Router>
-          <h1>App</h1>
+          <h1>Deafinitely Friendly</h1>
           <NavBar 
           user={this.state.user}
           handleLogout={this.handleLogout}
+          />
+          <Route
+          exact
+          path="/"
+          render={({ history }) => (
+          <HomePage
+          history={history}
+            />
+          )}
           />
           <Route
             exact

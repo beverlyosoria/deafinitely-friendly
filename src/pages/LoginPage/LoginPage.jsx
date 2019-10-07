@@ -28,6 +28,7 @@ class LoginPage extends Component {
       // Invalid user data (probably duplicate email)
       this.props.updateMessage(err.message);
     }
+  }  
 
   render() {
     return (
