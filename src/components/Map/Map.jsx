@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withGoogleMap, GoogleMap, withScriptjs, InfoWindow, Marker } from "react-google-maps";
 import Geocode from "react-geocode";
 import Autocomplete from 'react-google-autocomplete';
-Geocode.setApiKey( "AIzaSyAb9kc13328-gU39BHLfUlFnmk_7X2_8Jc" );
+
 Geocode.enableDebug();
 
 class Map extends Component{
