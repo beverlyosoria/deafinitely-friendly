@@ -9,6 +9,7 @@ import LoginPage from "../LoginPage/LoginPage";
 import userService from "../../utils/userService";
 import HomePage from "../HomePage/HomePage";
 import NewPost from "../../components/NewPost/NewPost";
+import postService from "../../utils/postService";
 
 
 class App extends Component {
@@ -35,7 +36,7 @@ class App extends Component {
       },
       body: JSON.stringify({title})
     }
-    await createPost(options) 
+    await postService.createPost(options) 
   }
 
   render() {
