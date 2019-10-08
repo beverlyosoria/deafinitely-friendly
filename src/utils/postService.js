@@ -8,6 +8,7 @@ async function createPost(options) {
     }
 }
 
+
 export default {
     createPost
 }

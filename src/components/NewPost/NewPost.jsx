@@ -15,7 +15,7 @@ handleOnChange = event => {
 
 handleSubmit = event => {
     event.preventDefault()
-    this.props.handleAddPost({...this.state})
+    // this.props.handleAddPost({...this.state})
 }
 
 render() {
@@ -26,8 +26,9 @@ render() {
             {' '}
             <label>Title</label>
             <Map
+            handleAddPost={this.props.handleAddPost}
      google={this.props.google}
-     center={{lat: 18.5204, lng: 73.8567}}
+     center={{lat: 30.2672, lng: -97.7431}}
      height='300px'
      zoom={15}
     />

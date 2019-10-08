@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withGoogleMap, GoogleMap, withScriptjs, InfoWindow, Marker } from "react-google-maps";
 import Geocode from "react-geocode";
 import Autocomplete from 'react-google-autocomplete';
-
+Geocode.setApiKey( process.env.REACT_APP_API_KEY );
 Geocode.enableDebug();
 
 class Map extends Component{
@@ -27,16 +27,17 @@ class Map extends Component{
 	/**
 	 * Get the current address from the default map position and set those values in the state
 	 */
-	componentWillMount() {
+	componentDidMount() {
 		Geocode.fromLatLng( this.state.mapPosition.lat , this.state.mapPosition.lng ).then(
 			response => {
 				const address = response.results[0].formatted_address,
-				      addressArray =  response.results[0].address_components,
+					  addressArray =  response.results[0].address_components,
 				      city = this.getCity( addressArray ),
 				      area = this.getArea( addressArray ),
 				      state = this.getState( addressArray );
 
-				console.log( 'city', city, area, state );
+				// console.log( 'city', city, area, state );
+				console.log('res', addressArray)
 
 				this.setState( {
 					address: ( address ) ? address : '',
@@ -182,6 +183,9 @@ class Map extends Component{
 	 */
 	onPlaceSelected = ( place ) => {
 		console.log( 'plc', place );
+		
+	
+
 		const address = place.formatted_address,
 		      addressArray =  place.address_components,
 		      city = this.getCity( addressArray ),
@@ -205,6 +209,10 @@ class Map extends Component{
 			},
 		})
 	};
+
+	handleAdd = (e) => {
+		this.props.handleAddPost({...this.state})
+	}
 
 
 	render(){
@@ -241,51 +249,40 @@ class Map extends Component{
 								marginTop: '2px',
 								marginBottom: '500px'
 							}}
+						
 							onPlaceSelected={ this.onPlaceSelected }
-							types={['(regions)']}
+							types={['establishment']}
 						/>
 					</GoogleMap>
 				)
 			)
 		);
 		let map;
+		let api  = "https://maps.googleapis.com/maps/api/js?key=" + process.env.REACT_APP_API_KEY + "&libraries=places";
 		if( this.props.center.lat !== undefined ) {
 			map = <div>
 				<div>
 					<div className="form-group">
 						<label htmlFor="">City</label>
-            <input 
-            type="text" 
-            name="city" 
-            className="form-control" 
-            onChange={ this.onChange } 
-            value={ this.state.city } 
-            />
+						<input type="text" name="city" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.city }/>
+					</div>
+					<div className="form-group">
+						<label htmlFor="">City</label>
+						<input type="text" name="area" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.area }/>
 					</div>
 					<div className="form-group">
 						<label htmlFor="">State</label>
-            <input 
-            type="text" 
-            name="state" 
-            className="form-control" 
-            onChange={ this.onChange } 
-            value={ this.state.state } 
-            />
+						<input type="text" name="state" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.state }/>
 					</div>
 					<div className="form-group">
 						<label htmlFor="">Address</label>
-            <input 
-            type="text" 
-            name="address" 
-            className="form-control" 
-            onChange={ this.onChange } 
-            value={ this.state.address }
-            />
+						<input type="text" name="address" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.address }/>
 					</div>
+					<button onClick={this.handleAdd}>Add</button>
 				</div>
 
 				<AsyncMap
-					googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAb9kc13328-gU39BHLfUlFnmk_7X2_8Jc&libraries=places"
+					googleMapURL= {api}
 					loadingElement={
 						<div style={{ height: `100%` }} />
 					}

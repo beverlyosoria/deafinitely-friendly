@@ -6,6 +6,7 @@ class HomePage extends Component {
     render () {
     return (
         <div>
+       
         <br />
         <br />
         <Link to='/newPost'>   

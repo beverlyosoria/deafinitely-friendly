@@ -6,7 +6,7 @@ var postSchema = new Schema({
       type: String,
     //   required: true
     },
-    location: {
+    address: {
       type: String, //temporary
     //   required: true
     },

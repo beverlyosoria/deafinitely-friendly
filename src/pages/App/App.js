@@ -16,7 +16,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: userService.getUser()
+      user: userService.getUser(),
+      posts: []
     };
   }
   handleLogout = () => {
@@ -28,16 +29,18 @@ class App extends Component {
     this.setState({ user: userService.getUser() });
   };
 
-  handleAddPost = async ({ title }) => {
+  handleAddPost = async ({ address }) => {
     const options = {
       method: 'POST',
       headers: {
         "content-type" : "application/json"
       },
-      body: JSON.stringify({title})
+      body: JSON.stringify({address})
     }
     await postService.createPost(options) 
   }
+
+
 
   render() {
     return (
@@ -55,6 +58,7 @@ class App extends Component {
           render={({ history }) => (
           <HomePage
           history={history}
+          posts={this.state.posts}
             />
           )}
           />
