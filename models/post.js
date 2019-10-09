@@ -10,9 +10,9 @@ var reviewSchema = new Schema(
 			max: 5
 		},
 		skills: [
-			{
-				type: String
-			}
+			// {
+			// 	type: String
+			// }
 		],
 		user: []
 	},

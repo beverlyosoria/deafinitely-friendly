@@ -11,7 +11,7 @@ class DetailsPage extends Component {
 				<p>{post.address}</p>
 				<p>{post.area}</p>
 				<p>{post.state}</p>
-				<ReviewForm />
+				<ReviewForm handleAddReview={this.props.handleAddReview} />
 			</div>
 		);
 	}
