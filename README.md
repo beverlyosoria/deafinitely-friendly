@@ -1,68 +1,56 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Title
 
-## Available Scripts
+[Deafinitely Friendly]()
 
-In the project directory, you can run:
+## Overview
+ A place where you can search for deaf-friendly businesses in your area or share your consumer experience and insights as deaf, deafblind, and hard of hearing individuals, friends/family of the deaf and those with a special interest in creating a deaf-friendly world.
+  
+The aim is to promote deaf-friendliness in your community via awareness and feedback.
 
-### `npm start`
+## Entity Relationship Diagram
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Wireframe
 
-### `npm test`
+![image description](../master/public/images/wireframe.jpg)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Screenshots
 
-### `npm run build`
+![image description](../master/public/images/home.jpg)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![image description](../master/public/images/business.jpg)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+![image description](../master/public/images/reviews.jpg)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![image description](../master/public/images/form.jpg)
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## User Stories
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+As a user, I can log in or sign up. 
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+As a user, I can create a post for any existing business and identify it by name and location.
 
-## Learn More
+As a user, I can find existing posts, left by previous users, for the business I am interested in.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+As a user, I can read reviews left by previous users.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+As a user, I can rate the business from a scale of one to five stars. 
 
-### Code Splitting
+As a user, I can check off a set of accomadations offered at said business.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+As a user, I can leave a comment of my experience with that business. 
 
-### Analyzing the Bundle Size
+As a user, I can edit or delete my review.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-### Making a Progressive Web App
+## Technologies Used
+JavaScript, React, Express, Node.js, MongoDb, Mongoose, Heroku
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+## Stretch Goals
 
-### Advanced Configuration
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
 
-### Deployment
+## Next Steps
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
