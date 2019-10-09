@@ -29,17 +29,36 @@ class App extends Component {
     this.setState({ user: userService.getUser() });
   };
 
-  handleAddPost = async ({ address }) => {
+  handleAddPost = async ({ name, area, state, address }) => {
     const options = {
       method: 'POST',
       headers: {
         "content-type" : "application/json"
       },
-      body: JSON.stringify({address})
+      body: JSON.stringify({name, area, state, address})
     }
     await postService.createPost(options) 
   }
 
+  componentDidMount() {
+    this.getAllPost()
+  }
+
+  getAllPost() {
+    const options = {
+      method: "POST",
+      headers: {
+        "content-type": "application/json"
+      }
+    };
+
+    postService.getPost(options).then(results =>
+      this.setState({
+        posts: results
+      })
+      
+    );
+}
 
 
   render() {

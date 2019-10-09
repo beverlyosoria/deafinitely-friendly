@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withGoogleMap, GoogleMap, withScriptjs, InfoWindow, Marker } from "react-google-maps";
 import Geocode from "react-geocode";
 import Autocomplete from 'react-google-autocomplete';
+import { set } from 'mongoose';
 Geocode.setApiKey( process.env.REACT_APP_API_KEY );
 Geocode.enableDebug();
 
@@ -10,6 +11,7 @@ class Map extends Component{
 	constructor( props ){
 		super( props );
 		this.state = {
+			name: this.props.name,
 			address: '',
 			city: '',
 			area: '',
@@ -23,6 +25,12 @@ class Map extends Component{
 				lng: this.props.center.lng
 			}
 		}
+	
+	}
+
+	handleAdd = (e) => {
+		this.props.handleAddPost({...this.state})
+		console.log(this.state)
 	}
 	/**
 	 * Get the current address from the default map position and set those values in the state
@@ -210,15 +218,12 @@ class Map extends Component{
 		})
 	};
 
-	handleAdd = (e) => {
-		this.props.handleAddPost({...this.state})
-	}
-
 
 	render(){
 		const AsyncMap = withScriptjs(
 			withGoogleMap(
 				props => (
+
 					<GoogleMap google={ this.props.google }
 					           defaultZoom={ this.props.zoom }
 					           defaultCenter={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
@@ -249,7 +254,6 @@ class Map extends Component{
 								marginTop: '2px',
 								marginBottom: '500px'
 							}}
-						
 							onPlaceSelected={ this.onPlaceSelected }
 							types={['establishment']}
 						/>
@@ -261,26 +265,7 @@ class Map extends Component{
 		let api  = "https://maps.googleapis.com/maps/api/js?key=" + process.env.REACT_APP_API_KEY + "&libraries=places";
 		if( this.props.center.lat !== undefined ) {
 			map = <div>
-				<div>
-					<div className="form-group">
-						<label htmlFor="">City</label>
-						<input type="text" name="city" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.city }/>
-					</div>
-					<div className="form-group">
-						<label htmlFor="">City</label>
-						<input type="text" name="area" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.area }/>
-					</div>
-					<div className="form-group">
-						<label htmlFor="">State</label>
-						<input type="text" name="state" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.state }/>
-					</div>
-					<div className="form-group">
-						<label htmlFor="">Address</label>
-						<input type="text" name="address" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.address }/>
-					</div>
-					<button onClick={this.handleAdd}>Add</button>
-				</div>
-
+				
 				<AsyncMap
 					googleMapURL= {api}
 					loadingElement={
@@ -292,7 +277,26 @@ class Map extends Component{
 					mapElement={
 						<div style={{ height: `100%` }} />
 					}
-				/>
+				/>			
+				<br />
+				<br />
+				<br />
+				<br />	
+				<div>
+					<div className="form-group">
+						<label htmlFor="">Address</label>
+						<input type="text" name="address" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.address }/>
+					</div>
+					<div className="form-group">
+						<label htmlFor="">City</label>
+						<input type="text" name="area" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.area }/>
+					</div>
+					<div className="form-group">
+						<label htmlFor="">State</label>
+						<input type="text" name="state" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.state }/>
+					</div>
+					<button onClick={this.handleAdd}>Add</button>
+				</div>
 			</div>
 		} else {
 			map = <div style={{height: this.props.height}} />

@@ -2,12 +2,18 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var postSchema = new Schema({
-    title: {
+    name: {
       type: String,
     //   required: true
     },
+    area: {
+      type: String,
+    },
+    state: {
+      type: String,
+    },
     address: {
-      type: String, //temporary
+      type: String, 
     //   required: true
     },
     user: []

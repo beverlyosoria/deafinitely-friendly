@@ -8,7 +8,17 @@ async function createPost(options) {
     }
 }
 
+async function getPost(options) {
+    try {
+        const sendPost = await fetch('/api/posts/all', options)
+        const postResults = await sendPost.json();
+        return await postResults;
+    } catch(error) {
+        console.log(error)
+    }
+}
 
 export default {
-    createPost
+    createPost,
+    getPost
 }
