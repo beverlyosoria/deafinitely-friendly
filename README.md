@@ -25,7 +25,6 @@ The aim is to promote deaf-friendliness in your community via awareness and feed
 ![image description](../master/public/images/form.jpg)
 
 
-
 ## User Stories
 
 As a user, I can log in or sign up. 
