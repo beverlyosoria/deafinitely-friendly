@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReviewForm from '../../components/ReviewForm/ReviewForm';
 
 class DetailsPage extends Component {
 	render() {
@@ -10,6 +11,7 @@ class DetailsPage extends Component {
 				<p>{post.address}</p>
 				<p>{post.area}</p>
 				<p>{post.state}</p>
+				<ReviewForm />
 			</div>
 		);
 	}
