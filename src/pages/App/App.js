@@ -44,17 +44,6 @@ class App extends Component {
 		await postService.createPost(options);
 	};
 
-	handleAddReview = async ({ content, rating, skills, postId }) => {
-		const options = {
-			method: 'POST',
-			headers: {
-				'content-type': 'application/json'
-			},
-			body: JSON.stringify({ content, rating, skills, postId })
-		};
-		await postService.createReview(options);
-	};
-
 	componentDidMount() {
 		this.getAllPost();
 	}
@@ -108,9 +97,7 @@ class App extends Component {
 					<Route
 						exact
 						path="/details/:id"
-						render={(props) => (
-							<DetailsPage {...props} getPostId={this.getPostId} handleAddReview={this.handleAddReview} />
-						)}
+						render={(props) => <DetailsPage {...props} getPostId={this.getPostId} />}
 					/>
 				</Router>
 			</div>

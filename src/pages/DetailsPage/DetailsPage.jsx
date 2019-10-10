@@ -28,6 +28,21 @@ class DetailsPage extends Component {
 		);
 	};
 
+	handleAddReview = async ({ content, rating, skills, postId }) => {
+		const options = {
+			method: 'POST',
+			headers: {
+				'content-type': 'application/json'
+			},
+			body: JSON.stringify({ content, rating, skills, postId })
+		};
+		await postService.createReview(options).then((results) =>
+			this.setState({
+				reviews: results.reviews
+			})
+		);
+	};
+
 	handleDelete = (e) => {
 		let reviewId = e.target.id;
 		let postId = this.state.postId;
@@ -72,7 +87,7 @@ class DetailsPage extends Component {
 					</div>
 				))}
 
-				<ReviewForm postId={post._id} handleAddReview={this.props.handleAddReview} />
+				<ReviewForm postId={post._id} handleAddReview={this.handleAddReview} />
 			</div>
 		);
 	}
