@@ -3,14 +3,25 @@ const User = require('../models/user');
 
 module.exports = {
 	getAllReviews,
-	create
+	create,
+	delReview
 };
 
-function getAllReviews(req, res) {
+function delReview(req, res) {
 	console.log(req.body);
+	let reviewId = req.body.reviewId;
+	let postId = req.body.postId;
+	Post.findById(postId, function(err, post) {
+		post.reviews.splice(reviewId, 1);
+		post.save(() => {
+			res.status(201).json(post);
+		});
+	});
+}
+
+function getAllReviews(req, res) {
 	Post.findById(req.body.postId)
 		.then((post) => {
-			console.log(post);
 			res.status(200).json(post);
 		})
 		.catch((err) => console.log(err));

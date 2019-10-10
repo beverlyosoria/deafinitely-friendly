@@ -37,10 +37,20 @@ async function getReviews(options) {
 		console.log(error);
 	}
 }
+async function delReview(options) {
+	try {
+		const sendPost = await fetch('/api/reviews/delete', options);
+		const postResults = await sendPost.json();
+		return await postResults;
+	} catch (error) {
+		console.log(error);
+	}
+}
 
 export default {
 	createReview,
 	createPost,
 	getPost,
-	getReviews
+	getReviews,
+	delReview
 };

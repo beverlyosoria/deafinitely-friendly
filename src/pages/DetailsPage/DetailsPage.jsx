@@ -28,6 +28,28 @@ class DetailsPage extends Component {
 		);
 	};
 
+	handleDelete = (e) => {
+		let reviewId = e.target.id;
+		let postId = this.state.postId;
+		// console.log(postId);
+		this.deleteReview(reviewId, postId);
+	};
+
+	deleteReview = async (reviewId, postId) => {
+		const options = {
+			method: 'POST',
+			headers: {
+				'content-type': 'application/json'
+			},
+			body: JSON.stringify({ reviewId, postId })
+		};
+		await postService.delReview(options).then((results) =>
+			this.setState({
+				reviews: results.reviews
+			})
+		);
+	};
+
 	render() {
 		// this is to match the index of post from the getPost function
 		let post = this.props.getPostId(this.props.match.params.id);
@@ -44,6 +66,9 @@ class DetailsPage extends Component {
 						<p>Comment: {r.content}</p>
 						<p>Rating: {r.rating}</p>
 						<p>Skills: {r.skills}</p>
+						<button id={id} onClick={this.handleDelete}>
+							X
+						</button>
 					</div>
 				))}
 
