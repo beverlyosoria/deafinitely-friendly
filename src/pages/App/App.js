@@ -44,13 +44,13 @@ class App extends Component {
 		await postService.createPost(options);
 	};
 
-	handleAddReview = async ({ content, rating, skills }) => {
+	handleAddReview = async ({ content, rating, skills, postId }) => {
 		const options = {
 			method: 'POST',
 			headers: {
 				'content-type': 'application/json'
 			},
-			body: JSON.stringify({ content, rating, skills })
+			body: JSON.stringify({ content, rating, skills, postId })
 		};
 		await postService.createReview(options);
 	};

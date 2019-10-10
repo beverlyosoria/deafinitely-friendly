@@ -28,8 +28,19 @@ async function createReview(options) {
 	}
 }
 
+async function getReviews(options) {
+	try {
+		const sendPost = await fetch('/api/reviews/all', options);
+		const postResults = await sendPost.json();
+		return await postResults;
+	} catch (error) {
+		console.log(error);
+	}
+}
+
 export default {
 	createReview,
 	createPost,
-	getPost
+	getPost,
+	getReviews
 };

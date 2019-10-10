@@ -22,7 +22,8 @@ class ReviewForm extends Component {
 		this.state = {
 			content: '',
 			rating: '',
-			skills: checkedArr
+			skills: checkedArr,
+			postId: this.props.postId
 		};
 	}
 	handleChange = (e) => {
@@ -44,12 +45,13 @@ class ReviewForm extends Component {
 		return (
 			<div>
 				<h1>ReviewForm</h1>
+
 				<form onSubmit={this.handleSubmit}>
 					<label>Comments:</label>
 					<textarea name="content" onChange={this.handleChange} value={this.state.comments} />
 
 					<label id="rating">Rating:</label>
-					<div id="dropDown" class="input-field">
+					<div id="dropDown" className="input-field">
 						<select name="rating" onChange={this.handleChange} value={this.state.rating}>
 							<option value="1">1</option>
 							<option value="2">2</option>
@@ -106,7 +108,7 @@ class ReviewForm extends Component {
 						<br />
 					</label>
 					<label>
-						<input id="9" type="checkbox" name="skills" vonChange={this.handleonClick} />
+						<input id="9" type="checkbox" name="skills" onChange={this.handleonClick} />
 						<span>Assisted Listening Devices</span>
 						<br />
 					</label>
