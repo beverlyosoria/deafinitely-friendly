@@ -28,7 +28,9 @@ class Map extends Component {
 	}
 
 	handleAdd = (e) => {
+		e.preventDefault();
 		this.props.handleAddPost({ ...this.state });
+		this.props.history.push('/');
 		console.log(this.state);
 	};
 	/**
@@ -271,7 +273,7 @@ class Map extends Component {
 								name="address"
 								className="form-control"
 								onChange={this.onChange}
-								readOnly="readOnly"
+								// readOnly="readOnly"
 								value={this.state.address}
 							/>
 						</div>
@@ -282,7 +284,7 @@ class Map extends Component {
 								name="area"
 								className="form-control"
 								onChange={this.onChange}
-								readOnly="readOnly"
+								// readOnly="readOnly"
 								value={this.state.area}
 							/>
 						</div>
@@ -293,7 +295,7 @@ class Map extends Component {
 								name="state"
 								className="form-control"
 								onChange={this.onChange}
-								readOnly="readOnly"
+								// readOnly="readOnly"
 								value={this.state.state}
 							/>
 						</div>

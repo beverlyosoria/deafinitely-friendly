@@ -21,6 +21,7 @@ class NewPost extends Component {
 					{' '}
 					<input type="text" name="name" onChange={this.handleOnChange} value={this.state.name} />
 					<Map
+						history={this.props.history}
 						handleAddPost={this.props.handleAddPost}
 						name={this.state.name}
 						google={this.props.google}

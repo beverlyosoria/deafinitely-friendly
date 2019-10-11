@@ -41,7 +41,7 @@ class App extends Component {
 			},
 			body: JSON.stringify({ name, area, state, address })
 		};
-		await postService.createPost(options);
+		await postService.createPost(options).then(() => this.getAllPost());
 	};
 
 	componentDidMount() {
@@ -67,7 +67,6 @@ class App extends Component {
 		return (
 			<div>
 				<Router>
-					<h1>Deafinitely Friendly</h1>
 					<NavBar user={this.state.user} handleLogout={this.handleLogout} />
 					<Route
 						exact
@@ -97,7 +96,7 @@ class App extends Component {
 					<Route
 						exact
 						path="/details/:id"
-						render={(props) => <DetailsPage {...props} getPostId={this.getPostId} />}
+						render={(props) => <DetailsPage user={this.state.user} {...props} getPostId={this.getPostId} />}
 					/>
 				</Router>
 			</div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReviewForm from '../../components/ReviewForm/ReviewForm';
 import postService from '../../utils/postService';
+import { MDBContainer, MDBInputGroup, MDBInput, MDBRow, MDBCol, MDBCard, MDBCardBody } from 'mdbreact';
 
 class DetailsPage extends Component {
 	state = {
@@ -70,24 +71,40 @@ class DetailsPage extends Component {
 		let post = this.props.getPostId(this.props.match.params.id);
 		return (
 			<div>
-				<h1>Details</h1>
-				<p>{post.address}</p>
-				<p>{post.area}</p>
-				<p>{post.state}</p>
-				<hr />
-				<h3>Reviews</h3>
-				{this.state.reviews.map((r, id) => (
-					<div key={id}>
-						<p>Comment: {r.content}</p>
-						<p>Rating: {r.rating}</p>
-						<p>Skills: {r.skills}</p>
-						<button id={id} onClick={this.handleDelete}>
-							X
-						</button>
-					</div>
-				))}
+				<MDBContainer>
+					<MDBRow>
+						<MDBCol align="center">
+							<h1>Details</h1>
+						</MDBCol>
+					</MDBRow>
+					<MDBRow>
+						<MDBCol align="center">
+							<p>{post.address}</p>
+							<p>{post.area}</p>
+							<p>{post.state}</p>
+						</MDBCol>
+					</MDBRow>
 
-				<ReviewForm postId={post._id} handleAddReview={this.handleAddReview} />
+					<hr />
+					<MDBRow>
+						<MDBCol align="center">
+							<h3>Reviews</h3>
+
+							{this.state.reviews.map((r, id) => (
+								<div key={id}>
+									<p>Comment: {r.content}</p>
+									<p>Rating: {r.rating}</p>
+									<p>Skills: {r.skills}</p>
+									<button id={id} onClick={this.handleDelete}>
+										X
+									</button>
+								</div>
+							))}
+						</MDBCol>
+					</MDBRow>
+
+					<ReviewForm postId={post._id} handleAddReview={this.handleAddReview} />
+				</MDBContainer>
 			</div>
 		);
 	}
