@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import './NavBar.css';
-
+import logo from '../../assets/img/deaf-friendly-logo.jpg';
 import {
 	MDBNavbar,
 	MDBNavbarBrand,
@@ -9,10 +7,7 @@ import {
 	MDBNavItem,
 	MDBNavLink,
 	MDBNavbarToggler,
-	MDBCollapse,
-	MDBDropdown,
-	MDBDropdownToggle,
-	MDBIcon
+	MDBCollapse
 } from 'mdbreact';
 
 class NavBar extends Component {
@@ -32,7 +27,7 @@ class NavBar extends Component {
 					</MDBNavLink>
 				</MDBNavItem>
 
-				<MDBNavItem>
+				<MDBNavItem right>
 					<MDBNavLink to="" onClick={this.props.handleLogout}>
 						LOG OUT
 					</MDBNavLink>
@@ -59,22 +54,12 @@ class NavBar extends Component {
 				<MDBNavbar style={{ height: '40px', backgroundColor: '#1F3534' }} />
 				<MDBNavbar color="" dark expand="md" className="mb-4">
 					<MDBNavbarBrand>
-						<strong className="black-text">Deafinitely Friendly</strong>
+						<img src={logo} width="220" height="70" />
 					</MDBNavbarBrand>
 					<MDBNavbarToggler onClick={this.toggleCollapse} />
 					<MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
 						{nav}
 						<MDBNavbarNav right>
-							<MDBNavItem>
-								<MDBNavLink className="waves-effect waves-light" to="#!">
-									<MDBIcon fab icon="twitter" />
-								</MDBNavLink>
-							</MDBNavItem>
-							<MDBNavItem>
-								<MDBNavLink className="waves-effect waves-light" to="#!">
-									<MDBIcon fab icon="google-plus-g" />
-								</MDBNavLink>
-							</MDBNavItem>
 							<MDBNavItem />
 						</MDBNavbarNav>
 					</MDBCollapse>

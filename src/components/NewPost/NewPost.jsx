@@ -1,37 +1,92 @@
 import React, { Component } from 'react';
 import './NewPost.css';
-import Map from './../../components/Map/Map';
+/* global google */
 
 class NewPost extends Component {
-	state = {
-		name: ''
+	constructor(props) {
+		super(props);
+		this.state = this.initialState();
+		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handlePlaceSelect = this.handlePlaceSelect.bind(this);
+		this.autocomplete = null;
+	}
+
+	initialState() {
+		return {
+			name: '',
+			address: '',
+			city: '',
+			state: '',
+			zip_code: '',
+			googleMapLink: ''
+		};
+	}
+
+	handleSubmit(event) {
+		event.preventDefault();
+		this.props.handleAddPost({ ...this.state });
+		this.props.history.push('/');
+	}
+
+	componentDidMount() {
+		this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), {
+			types: [ 'establishment' ]
+		});
+		this.autocomplete.setFields([ 'address_component' ]);
+
+		this.autocomplete.addListener('place_changed', this.handlePlaceSelect);
+	}
+
+	handleChange = (event) => {
+		this.setState({
+			[event.target.name]: event.target.value
+		});
 	};
 
-	handleOnChange = (event) => {
+	handlePlaceSelect() {
+		let addressObject = this.autocomplete.getPlace();
+		let address = addressObject.address_components;
 		this.setState({
-			name: event.target.value
+			address: `${address[0].long_name} ${address[1].long_name}`,
+			city: address[3].long_name,
+			state: address[5].short_name,
+			zip_code: address[7].short_name,
+			googleMapLink: addressObject.url
+		});
+		console.log(this.autocomplete.getPlace());
+		console.log(this.state);
+	}
+
+	handleMe = (e) => {
+		this.setState({
+			name: e.target.value
 		});
 	};
 
 	render() {
 		return (
 			<div>
-				<h1>Post</h1>
-				<form className="post">
-					{' '}
-					<input type="text" name="name" onChange={this.handleOnChange} value={this.state.name} />
-					<Map
-						history={this.props.history}
-						handleAddPost={this.props.handleAddPost}
-						name={this.state.name}
-						google={this.props.google}
-						center={{ lat: 30.2672, lng: -97.7431 }}
-						height="300px"
-						zoom={15}
+				<h1>Add New Place</h1>
+				<form onSubmit={this.handleSubmit}>
+					<input id="autocomplete" className="input-field" ref="input" type="text" onChange={this.handleMe} />
+
+					<input name={'name'} value={this.state.name} placeholder={'Name'} onChange={this.handleChange} />
+					<input
+						name={'street_address'}
+						value={this.state.address}
+						placeholder={'Street Address'}
+						onChange={this.handleChange}
 					/>
-					<br />
-					<br />
-					<br />
+					<input name={'city'} value={this.state.city} placeholder={'City'} onChange={this.handleChange} />
+					<input name={'state'} value={this.state.state} placeholder={'State'} onChange={this.handleChange} />
+					<input
+						name={'zip_code'}
+						value={this.state.zip_code}
+						placeholder={'Zipcode'}
+						onChange={this.handleChange}
+					/>
+					<button onSubmit={this.handleSubmit}>Submit</button>
 				</form>
 			</div>
 		);

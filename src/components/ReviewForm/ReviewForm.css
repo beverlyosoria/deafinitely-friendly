@@ -1,3 +1,10 @@
 div.review-form {
 	border: 10px;
 }
+.btn {
+	border: solid #fdc110 3px !important;
+	border-radius: 5px !important;
+}
+.btn.btn-sm {
+	font-size: 12px !important;
+}

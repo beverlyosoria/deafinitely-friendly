@@ -1,4 +1,4 @@
-# Title
+# Deafinitely Friendly
 
 [Deafinitely Friendly]()
 
@@ -7,35 +7,27 @@
   
 The aim is to promote deaf-friendliness in your community via awareness and feedback.
 
-## Entity Relationship Diagram
 
 
 ## Wireframe
 
-![image description](../master/public/images/wireframe.jpg)
+![image description](../src/assets/img/wireframe.jpg)
 
 ## Screenshots
 
-![image description](../master/public/images/home.jpg)
-
-![image description](../master/public/images/business.jpg)
-
-![image description](../master/public/images/reviews.jpg)
-
-![image description](../master/public/images/form.jpg)
 
 
 ## User Stories
 
 As a user, I can log in or sign up. 
 
-As a user, I can create a post for any existing business and identify it by name and location.
-
 As a user, I can find existing posts, left by previous users, for the business I am interested in.
+
+As a user, I can create a post for any existing business and via a add place post.
 
 As a user, I can read reviews left by previous users.
 
-As a user, I can rate the business from a scale of one to five stars. 
+As a user, I can rate the business from a scale of one to five. 
 
 As a user, I can check off a set of accomadations offered at said business.
 
@@ -45,11 +37,9 @@ As a user, I can edit or delete my review.
 
 
 ## Technologies Used
-JavaScript, React, Express, Node.js, MongoDb, Mongoose, Heroku
-
-## Stretch Goals
+JavaScript, React, Express, Node.js, MongoDb, Mongoose, MDB React, Heroku
 
 
+## Future Enhancements
 
-## Next Steps
 

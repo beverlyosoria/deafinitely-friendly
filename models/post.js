@@ -9,11 +9,7 @@ var reviewSchema = new Schema(
 			min: 1,
 			max: 5
 		},
-		skills: [
-			// {
-			// 	type: String
-			// }
-		],
+		skills: [],
 
 		user: []
 	},
@@ -25,9 +21,8 @@ var reviewSchema = new Schema(
 var postSchema = new Schema({
 	name: {
 		type: String
-		//   required: true
 	},
-	area: {
+	city: {
 		type: String
 	},
 	state: {
@@ -35,7 +30,6 @@ var postSchema = new Schema({
 	},
 	address: {
 		type: String
-		//   required: true
 	},
 	reviews: [ reviewSchema ],
 	user: []

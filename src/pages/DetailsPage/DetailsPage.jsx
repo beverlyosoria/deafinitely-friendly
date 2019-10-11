@@ -1,14 +1,25 @@
 import React, { Component } from 'react';
 import ReviewForm from '../../components/ReviewForm/ReviewForm';
 import postService from '../../utils/postService';
-import { MDBContainer, MDBInputGroup, MDBInput, MDBRow, MDBCol, MDBCard, MDBCardBody } from 'mdbreact';
+import {
+	MDBContainer,
+	MDBTable,
+	MDBCardTitle,
+	MDBCardText,
+	MDBInputGroup,
+	MDBInput,
+	MDBRow,
+	MDBCol,
+	MDBCard,
+	MDBCardBody
+} from 'mdbreact';
 
 class DetailsPage extends Component {
 	state = {
 		reviews: [],
 		postId: this.props.getPostId(this.props.match.params.id)._id
 	};
-
+	// ------ Send post Id to server --------
 	componentDidMount() {
 		this.getPostReviews(this.state.postId);
 	}
@@ -21,7 +32,7 @@ class DetailsPage extends Component {
 			},
 			body: JSON.stringify({ postId })
 		};
-
+		//  Set results to reviews array
 		postService.getReviews(options).then((results) =>
 			this.setState({
 				reviews: results.reviews
@@ -67,8 +78,20 @@ class DetailsPage extends Component {
 	};
 
 	render() {
-		// this is to match the index of post from the getPost function
+		// match the index of post from the getPost function
 		let post = this.props.getPostId(this.props.match.params.id);
+		// Hides form if user is not logged in
+		let userReview = this.props.user ? (
+			<div>
+				<ReviewForm postId={post._id} handleAddReview={this.handleAddReview} />
+			</div>
+		) : (
+			<div align="center">
+				{' '}
+				Log In to leave a review!
+				<br />
+			</div>
+		);
 		return (
 			<div>
 				<MDBContainer>
@@ -79,31 +102,47 @@ class DetailsPage extends Component {
 					</MDBRow>
 					<MDBRow>
 						<MDBCol align="center">
-							<p>{post.address}</p>
-							<p>{post.area}</p>
-							<p>{post.state}</p>
+							<MDBCard style={{ width: '22rem' }}>
+								<MDBCardBody>
+									<MDBCardTitle>
+										<p>{post.name}</p>
+									</MDBCardTitle>
+									<MDBCardText>
+										<p>{post.address}</p>
+										<p>{post.city}</p>
+										<p>{post.state}</p>
+									</MDBCardText>
+								</MDBCardBody>
+							</MDBCard>
 						</MDBCol>
 					</MDBRow>
 
 					<hr />
 					<MDBRow>
-						<MDBCol align="center">
+						<MDBCol>
 							<h3>Reviews</h3>
-
-							{this.state.reviews.map((r, id) => (
-								<div key={id}>
-									<p>Comment: {r.content}</p>
-									<p>Rating: {r.rating}</p>
-									<p>Skills: {r.skills}</p>
-									<button id={id} onClick={this.handleDelete}>
-										X
-									</button>
-								</div>
-							))}
+							<MDBTable className="mt-3" scrollY>
+								{this.state.reviews.map((r, id) => (
+									<div key={id} className="mb-2">
+										<p>
+											<strong>Comment:</strong> {r.content}
+										</p>
+										<p>
+											<strong>Rating:</strong> {r.rating}
+										</p>
+										<p>
+											<strong>Skills:</strong> {r.skills}
+										</p>
+										<button className="btn btn-sm" id={id} onClick={this.handleDelete}>
+											Delete
+										</button>
+										<hr />
+									</div>
+								))}
+							</MDBTable>
 						</MDBCol>
 					</MDBRow>
-
-					<ReviewForm postId={post._id} handleAddReview={this.handleAddReview} />
+					{userReview}
 				</MDBContainer>
 			</div>
 		);

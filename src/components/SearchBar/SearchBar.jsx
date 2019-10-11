@@ -7,7 +7,14 @@ class SearchBar extends Component {
 		return (
 			<div class="d-flex justify-content-center">
 				<MDBCol md="8">
-					<input className="form-control" type="text" placeholder="Search" aria-label="Search" />
+					<input
+						value={this.props.search}
+						onChange={this.props.updateSearch}
+						className="form-control"
+						type="text"
+						placeholder="Search"
+						aria-label="Search"
+					/>
 				</MDBCol>
 			</div>
 		);

@@ -33,13 +33,13 @@ class App extends Component {
 		return this.state.posts[id];
 	};
 
-	handleAddPost = async ({ name, area, state, address }) => {
+	handleAddPost = async ({ name, city, state, address }) => {
 		const options = {
 			method: 'POST',
 			headers: {
 				'content-type': 'application/json'
 			},
-			body: JSON.stringify({ name, area, state, address })
+			body: JSON.stringify({ name, city, state, address })
 		};
 		await postService.createPost(options).then(() => this.getAllPost());
 	};

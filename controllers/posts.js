@@ -14,7 +14,6 @@ function getAllPosts(req, res) {
 }
 
 function create(req, res) {
-	console.log(req.body);
 	const post = new Post(req.body);
 	post.save(function() {
 		res.status(201).json(post);

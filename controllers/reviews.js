@@ -25,11 +25,6 @@ function getAllReviews(req, res) {
 			res.status(200).json(post);
 		})
 		.catch((err) => console.log(err));
-	//   Post.find({})
-	//       .then(posts => {
-	//         res.status(200).json(posts);
-	//       })
-	//       .catch(err => console.log(err));
 }
 
 function create(req, res) {
