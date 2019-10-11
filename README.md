@@ -11,7 +11,7 @@ The aim is to promote deaf-friendliness in your community via awareness and feed
 
 ## Wireframe
 
-![image description](../src/assets/img/wireframe.jpg)
+![image description](src/assets/img/wireframe.jpg)
 
 ## Screenshots
 
