@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './NewPost.css';
+import Script from 'react-load-script';
 /* global google */
 
 class NewPost extends Component {
@@ -9,7 +10,7 @@ class NewPost extends Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handlePlaceSelect = this.handlePlaceSelect.bind(this);
-		this.autocomplete = null;
+		// this.autocomplete = null;
 	}
 
 	initialState() {
@@ -29,14 +30,14 @@ class NewPost extends Component {
 		this.props.history.push('/');
 	}
 
-	componentDidMount() {
+	handleLoad = () => {
 		this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), {
 			types: [ 'establishment' ]
 		});
 		this.autocomplete.setFields([ 'address_component' ]);
 
 		this.autocomplete.addListener('place_changed', this.handlePlaceSelect);
-	}
+	};
 
 	handleChange = (event) => {
 		this.setState({
@@ -65,9 +66,13 @@ class NewPost extends Component {
 	};
 
 	render() {
+		let url = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_API_KEY}&libraries=places`;
+
 		return (
 			<div>
 				<h1>Add New Place</h1>
+				<Script url={url} onLoad={this.handleLoad} />
+
 				<form onSubmit={this.handleSubmit}>
 					<input id="autocomplete" className="input-field" ref="input" type="text" onChange={this.handleMe} />
 

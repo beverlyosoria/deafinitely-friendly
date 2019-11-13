@@ -61,7 +61,7 @@ class LoginPage extends Component {
 					</div>
 					<div className="form-group">
 						<div className="col-sm-12 text-center">
-							<MDBBtn color="white">Log In</MDBBtn>&nbsp;&nbsp;&nbsp;
+							<button>Log In</button>&nbsp;&nbsp;&nbsp;
 							<Link to="/">Cancel</Link>
 						</div>
 					</div>

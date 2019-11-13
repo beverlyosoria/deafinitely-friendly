@@ -58,7 +58,6 @@ class DetailsPage extends Component {
 	handleDelete = (e) => {
 		let reviewId = e.target.id;
 		let postId = this.state.postId;
-		// console.log(postId);
 		this.deleteReview(reviewId, postId);
 	};
 
